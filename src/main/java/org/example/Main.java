@@ -33,8 +33,8 @@ public class Main {
         searchPhrase = args[3];
         ScheduledExecutorService ses = newSingleThreadScheduledExecutor();
         long millis = 60 * 1000;
-        Runnable checkIfZeldaAvailable = generateCheckTask();
-        ses.scheduleAtFixedRate(checkIfZeldaAvailable, 0, millis, MILLISECONDS);
+        Runnable checkTask = generateCheckTask();
+        ses.scheduleAtFixedRate(checkTask, 0, millis, MILLISECONDS);
     }
 
     private static Runnable generateCheckTask() {
@@ -45,7 +45,7 @@ public class Main {
                     System.out.println(LocalDateTime.now() + " Skipping check, it's night");
                     return;
                 }
-                System.out.println(LocalDateTime.now() + " Checking if Zelda is available... Previously found " + articles + " articles");
+                System.out.println(LocalDateTime.now() + " Checking if " + searchPhrase + " is available... Previously found " + articles + " articles");
                 String content = makeGetHttpRequestTo("https://lowcygier.pl/?s=" + searchPhrase);
                 int newArticles = getNumberOfArticles(content);
                 if (newArticles > articles) {
