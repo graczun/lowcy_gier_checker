@@ -89,6 +89,6 @@ public class Main {
     }
 
     private static int getNumberOfArticles(String content) {
-        return Integer.parseInt(content.substring(content.indexOf("Znaleziono") + "Znaleziono".length(), content.indexOf("wpisów")).trim());
+        return Integer.parseInt(content.substring(content.indexOf("Znaleziono") + "Znaleziono".length(), content.indexOf("wpis")).trim());
     }
 }
